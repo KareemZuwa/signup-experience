@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+  return <p>Copyright ©2024 Kareem Zuwa</p>;
+};
