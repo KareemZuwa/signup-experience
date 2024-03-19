@@ -1,0 +1,19 @@
+.create_account_section_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  text-align: start;
+}
+
+.title {
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 1200px) {
+  .create_account_section_wrapper {
+    width: 100%;
+  }
+}

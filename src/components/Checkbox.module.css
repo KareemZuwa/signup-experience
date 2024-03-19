@@ -1,0 +1,9 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.label p {
+  font-size: 0.75em;
+}

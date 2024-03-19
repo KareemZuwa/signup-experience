@@ -1,0 +1,16 @@
+.unique_selling_points_wrapper {
+  padding: 2rem;
+  background: linear-gradient(
+    170deg,
+    rgba(102, 187, 193, 1) 0%,
+    rgba(0, 142, 151, 1) 100%
+  );
+  border-radius: 5px;
+  color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+  .unique_selling_points_wrapper {
+    width: 100%;
+  }
+}
