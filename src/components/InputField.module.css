@@ -5,6 +5,10 @@
   font-size: 0.875em;
 }
 
+.input_area {
+  position: relative;
+}
+
 .input {
   margin-top: 0.5rem;
   padding: 1rem 0rem 1rem 1rem;
@@ -13,3 +17,12 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.input_area span {
+  position: absolute;
+  top: 62%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer; 
+}
+

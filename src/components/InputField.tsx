@@ -7,6 +7,7 @@ export const InputField = ({
   name,
   type,
   placeholder,
+  icon,
   handleOnChange,
 }: InputFieldProps) => {
   return (
@@ -14,7 +15,7 @@ export const InputField = ({
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
-      <div className="mt-2">
+      <div className={styles.input_area}>
         <input
           type={type}
           name={name}
@@ -23,6 +24,11 @@ export const InputField = ({
           placeholder={placeholder}
           onChange={(event) => handleOnChange(event)}
         />
+        {icon && (
+          <span>
+            {icon}
+          </span>
+        )}
       </div>
     </div>
   );

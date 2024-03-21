@@ -4,9 +4,12 @@ import { Button } from "../../components/Button";
 import { InputField } from "../../components/InputField";
 import { Checkbox } from "../../components/Checkbox";
 import { useCheckbox } from "../../hooks/useCheckbox";
+import { PasswordToggleReturnType } from "../../types/interfaces";
+import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 
 export const CreateAccountSection = () => {
   const { checked, handleChange } = useCheckbox();
+  const { inputType, icon }: PasswordToggleReturnType = usePasswordToggle();
 
   console.log(checked);
 
@@ -39,14 +42,16 @@ export const CreateAccountSection = () => {
         <InputField
           label="Password"
           name="password"
-          type="password"
+          type={inputType}
           handleOnChange={handleOnChange}
+          icon={icon}
         />
         <InputField
           label="Confirm Password"
           name="confirm-password"
-          type="password"
+          type={inputType}
           handleOnChange={handleOnChange}
+          icon={icon}
         />
         <Checkbox checked={checked} handleChange={handleChange} />
         <Button />

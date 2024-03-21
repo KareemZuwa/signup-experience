@@ -1,15 +1,19 @@
-import { ReactElement } from "react";
-
 export interface InputFieldProps {
   label: string;
   name: string;
   type: string;
   placeholder?: string;
   handleOnChange: (event: any) => void;
-  Icon?: ReactElement;
+  icon?: JSX.Element;
 }
 
 export interface CheckboxProps {
   checked: boolean;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface PasswordToggleReturnType {
+  inputType: string;
+  icon: JSX.Element;
+  toggleVisibility: () => void;
 }

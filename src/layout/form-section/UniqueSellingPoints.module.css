@@ -1,4 +1,7 @@
 .unique_selling_points_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2rem;
   background: linear-gradient(
     170deg,
@@ -7,6 +10,36 @@
   );
   border-radius: 5px;
   color: white;
+  text-align: start;
+}
+
+.unique_selling_points_wrapper h1 {
+  font-size: 3rem;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.unique_selling_points_wrapper ul {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8em;
+}
+
+.unique_selling_points_wrapper li {
+  list-style-type: none;
+  font-size: .8em;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: baseline; 
+}
+
+li:before {
+  content:"✓";
+  font-size:1rem;
+  margin-right: 2rem;
 }
 
 @media only screen and (max-width: 1200px) {
