@@ -1,3 +1,7 @@
+export interface ButtonProps {
+  isDisabled?: boolean;
+}
+
 export interface InputFieldProps {
   label: string;
   name: string;

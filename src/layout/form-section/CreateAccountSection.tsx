@@ -9,7 +9,10 @@ import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
 export const CreateAccountSection = () => {
-  const { checked, handleChange } = useCheckbox();
+  const {
+    checked: agreementChecked,
+    handleChange: handleAgreementCheckChange,
+  } = useCheckbox();
   const { inputType, icon }: PasswordToggleReturnType = usePasswordToggle();
   const {
     firstnameError,
@@ -54,7 +57,7 @@ export const CreateAccountSection = () => {
   };
 
   console.log(values);
-  console.log(checked);
+  console.log(agreementChecked);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -116,8 +119,11 @@ export const CreateAccountSection = () => {
           errorMessage={confirmPasswordError}
           icon={icon}
         />
-        <Checkbox checked={checked} handleChange={handleChange} />
-        <Button />
+        <Checkbox
+          checked={agreementChecked}
+          handleChange={handleAgreementCheckChange}
+        />
+        <Button isDisabled={!agreementChecked} />
       </form>
     </div>
   );
