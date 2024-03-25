@@ -54,15 +54,16 @@ export const CreateAccountSection = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(values);
     // Additional form submission logic can go here
     // Create formData object
-    const formData = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+    // const formData = new FormData();
+    // Object.entries(values).forEach(([key, value]) => {
+    //   formData.append(key, value);
+    // });
 
     // Additional form submission logic can go here, using the formData object
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (

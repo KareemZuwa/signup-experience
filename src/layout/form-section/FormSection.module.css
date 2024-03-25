@@ -20,3 +20,9 @@
     align-items: center;
   }
 }
+
+@media only screen and (max-width: 640px) {
+  .form_section_wrapper {
+    margin: 0rem 2rem;
+  }
+}
