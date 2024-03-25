@@ -8,6 +8,8 @@ export const InputField = ({
   type,
   placeholder,
   icon,
+  errorMessage,
+  value,
   handleOnChange,
 }: InputFieldProps) => {
   return (
@@ -20,16 +22,15 @@ export const InputField = ({
           type={type}
           name={name}
           id={name}
-          className={styles.input}
+          className={`${styles.input} ${
+            errorMessage && value !== "" ? styles.input_error : ""
+          }`}
           placeholder={placeholder}
           onChange={(event) => handleOnChange(event)}
         />
-        {icon && (
-          <span>
-            {icon}
-          </span>
-        )}
+        {icon && <i>{icon}</i>}
       </div>
+      <span className={styles.error_message}>{errorMessage}</span>
     </div>
   );
 };

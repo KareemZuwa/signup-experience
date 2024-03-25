@@ -12,6 +12,17 @@
   font-weight: 500;
 }
 
+.input_group {
+  position: relative;
+}
+
+.error {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 4.75rem;
+  color:crimson;
+}
+
 @media only screen and (max-width: 1200px) {
   .create_account_section_wrapper {
     width: 100%;

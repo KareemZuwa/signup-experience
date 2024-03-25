@@ -2,7 +2,9 @@ export interface InputFieldProps {
   label: string;
   name: string;
   type: string;
+  value?: string;
   placeholder?: string;
+  errorMessage?: string | undefined;
   handleOnChange: (event: any) => void;
   icon?: JSX.Element;
 }

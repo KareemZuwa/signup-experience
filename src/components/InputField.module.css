@@ -1,5 +1,6 @@
 .input_field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
 }
 .label {
   font-size: 0.875em;
@@ -18,11 +19,26 @@
   box-sizing: border-box;
 }
 
-.input_area span {
+.input_area i {
   position: absolute;
   top: 62%;
   right: 1rem;
   transform: translateY(-50%);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
+.error_message {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 5.4rem;
+  color: #ed6a5a;
+  z-index: 20;
+}
+
+.input_validated {
+  border-color: #008d978d;
+}
+
+.input_error {
+  border-color: #ed6a5a;
+}
