@@ -3,6 +3,7 @@ import { useState } from "react";
 export const useFormValidation = () => {
   const [firstnameError, setFirstnameError] = useState("");
   const [lastnameError, setLastnameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
@@ -23,6 +24,16 @@ export const useFormValidation = () => {
       setLastnameError("Lastname must contain at least 2 characters");
     } else {
       setLastnameError("");
+    }
+  };
+
+  const validateEmail = (email: string) => {
+    // Regular expression pattern for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
     }
   };
 
@@ -55,6 +66,8 @@ export const useFormValidation = () => {
     validateFirstname,
     lastnameError,
     validateLastname,
+    emailError,
+    validateEmail,
     passwordError,
     validatePassword,
     confirmPasswordError,

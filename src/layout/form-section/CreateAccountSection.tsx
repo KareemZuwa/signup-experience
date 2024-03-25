@@ -14,10 +14,12 @@ export const CreateAccountSection = () => {
   const {
     firstnameError,
     lastnameError,
+    emailError,
     passwordError,
     confirmPasswordError,
     validateFirstname,
     validateLastname,
+    validateEmail,
     validatePassword,
     validateConfirmPassword,
   } = useFormValidation();
@@ -42,6 +44,8 @@ export const CreateAccountSection = () => {
       validateFirstname(value);
     } else if (name === "lastname") {
       validateLastname(value);
+    } else if (name === "email") {
+      validateEmail(value);
     } else if (name === "password") {
       validatePassword(value);
     } else if (name === "confirm-password") {
@@ -92,7 +96,9 @@ export const CreateAccountSection = () => {
           label="Email"
           name="email"
           type="email"
+          value={values.email}
           handleOnChange={handleInputChange}
+          errorMessage={emailError}
         />
         <InputField
           label="Password"
