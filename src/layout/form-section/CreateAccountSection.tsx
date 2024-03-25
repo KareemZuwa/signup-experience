@@ -59,6 +59,22 @@ export const CreateAccountSection = () => {
   console.log(values);
   console.log(agreementChecked);
 
+  const isFormValid = () => {
+    return (
+      values.firstname &&
+      values.lastname &&
+      values.email &&
+      values.password &&
+      values["confirm-password"] &&
+      firstnameError === "" &&
+      lastnameError === "" &&
+      emailError === "" &&
+      passwordError === "" &&
+      confirmPasswordError === "" &&
+      agreementChecked
+    );
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(values);
@@ -123,7 +139,7 @@ export const CreateAccountSection = () => {
           checked={agreementChecked}
           handleChange={handleAgreementCheckChange}
         />
-        <Button isDisabled={!agreementChecked} />
+        <Button isDisabled={!isFormValid()} />
       </form>
     </div>
   );
