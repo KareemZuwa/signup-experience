@@ -34,6 +34,8 @@ export const CreateAccountSection = () => {
     "confirm-password": "",
   });
 
+  const [isLoading, setLoading] = useState(false);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -43,104 +45,125 @@ export const CreateAccountSection = () => {
       [name]: value,
     }));
 
-    if (name === "firstname") {
+  switch (name) {
+    case "firstname":
       validateFirstname(value);
-    } else if (name === "lastname") {
+      break;
+    case "lastname":
       validateLastname(value);
-    } else if (name === "email") {
+      break;
+    case "email":
       validateEmail(value);
-    } else if (name === "password") {
+      break;
+    case "password":
       validatePassword(value);
-    } else if (name === "confirm-password") {
+      break;
+    case "confirm-password":
       validateConfirmPassword(value, values.password);
-    }
-  };
+      break;
+    default:
+      break;
+  }
+};
 
-  console.log(values);
-  console.log(agreementChecked);
+const isFormValid = () => {
+  return Object.values(values).every((value) => value) &&
+         Object.values({
+           firstnameError,
+           lastnameError,
+           emailError,
+           passwordError,
+           confirmPasswordError,
+         }).every((error) => error === "") &&
+         agreementChecked;
+};
 
-  const isFormValid = () => {
-    return (
-      values.firstname &&
-      values.lastname &&
-      values.email &&
-      values.password &&
-      values["confirm-password"] &&
-      firstnameError === "" &&
-      lastnameError === "" &&
-      emailError === "" &&
-      passwordError === "" &&
-      confirmPasswordError === "" &&
-      agreementChecked
-    );
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(values);
-    // Additional form submission logic can go here
-    // Create formData object
-    // const formData = new FormData();
-    // Object.entries(values).forEach(([key, value]) => {
-    //   formData.append(key, value);
-    // });
+    if (isFormValid()) {
+      // Show loading view
+      setLoading(true);
 
-    // Additional form submission logic can go here, using the formData object
-    // console.log(formData);
+      setTimeout(() => {
+        // Simulate form submission delay
+        localStorage.setItem("formData", JSON.stringify(values));
+        console.log(localStorage);
+
+        // Hide loading view after form submission is complete
+        setLoading(false);
+
+        // Clear form after a delay (if needed)
+        setTimeout(() => {
+          setValues({
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            "confirm-password": "",
+          });
+          handleAgreementCheckChange();
+        }, 1000); // Adjust the delay time as needed
+      }, 2000); // Adjust the delay time as needed
+    }
   };
 
   return (
     <div className={styles.create_account_section_wrapper}>
       <h2 className={styles.title}>Create your Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.input_group}>
+      {isLoading ? (
+        <div>Loading to Server</div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className={styles.input_group}>
+            <InputField
+              label="Firstname"
+              name="firstname"
+              type="text"
+              value={values.firstname}
+              handleOnChange={handleInputChange}
+              errorMessage={firstnameError}
+            />
+          </div>
           <InputField
-            label="Firstname"
-            name="firstname"
+            label="Lastname"
+            name="lastname"
             type="text"
-            value={values.firstname}
+            value={values.lastname}
             handleOnChange={handleInputChange}
-            errorMessage={firstnameError}
+            errorMessage={lastnameError}
           />
-        </div>
-        <InputField
-          label="Lastname"
-          name="lastname"
-          type="text"
-          value={values.lastname}
-          handleOnChange={handleInputChange}
-          errorMessage={lastnameError}
-        />
-        <InputField
-          label="Email"
-          name="email"
-          type="email"
-          value={values.email}
-          handleOnChange={handleInputChange}
-          errorMessage={emailError}
-        />
-        <InputField
-          label="Password"
-          name="password"
-          type={inputType}
-          handleOnChange={handleInputChange}
-          errorMessage={passwordError}
-          icon={icon}
-        />
-        <InputField
-          label="Confirm Password"
-          name="confirm-password"
-          type={inputType}
-          handleOnChange={handleInputChange}
-          errorMessage={confirmPasswordError}
-          icon={icon}
-        />
-        <Checkbox
-          checked={agreementChecked}
-          handleChange={handleAgreementCheckChange}
-        />
-        <Button isDisabled={!isFormValid()} />
-      </form>
+          <InputField
+            label="Email"
+            name="email"
+            type="email"
+            value={values.email}
+            handleOnChange={handleInputChange}
+            errorMessage={emailError}
+          />
+          <InputField
+            label="Password"
+            name="password"
+            type={inputType}
+            handleOnChange={handleInputChange}
+            errorMessage={passwordError}
+            icon={icon}
+          />
+          <InputField
+            label="Confirm Password"
+            name="confirm-password"
+            type={inputType}
+            handleOnChange={handleInputChange}
+            errorMessage={confirmPasswordError}
+            icon={icon}
+          />
+          <Checkbox
+            checked={agreementChecked}
+            handleChange={handleAgreementCheckChange}
+          />
+          <Button isDisabled={!isFormValid()} />
+        </form>
+      )}
     </div>
   );
 };
