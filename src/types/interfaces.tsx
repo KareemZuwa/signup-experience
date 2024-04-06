@@ -1,6 +1,7 @@
 export interface ButtonProps {
   isDisabled?: boolean;
   title: string;
+  icon?: JSX.Element;
 }
 
 export interface InputFieldProps {

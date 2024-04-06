@@ -7,6 +7,7 @@ import { useCheckbox } from "../../hooks/useCheckbox";
 import { PasswordToggleReturnType } from "../../types/interfaces";
 import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 import { useFormValidation } from "../../hooks/useFormValidation";
+import { LoaderDots } from "../../components/LoaderDots";
 
 export const CreateAccountSection = () => {
   const {
@@ -105,7 +106,7 @@ export const CreateAccountSection = () => {
           });
           handleAgreementCheckChange();
         }, 1000); // Adjust the delay time as needed
-      }, 2000); // Adjust the delay time as needed
+      }, 4000); // Adjust the delay time as needed
     }
   };
 
@@ -160,8 +161,9 @@ export const CreateAccountSection = () => {
           handleChange={handleAgreementCheckChange}
         />
         <Button
-          title={isPending ? "Creating account..." : "Create Account"}
+          title={isPending ? "Creating account" : "Create Account"}
           isDisabled={isPending || !isFormValid()}
+          icon={isPending ? <LoaderDots /> : undefined}
         />
       </form>
     </div>

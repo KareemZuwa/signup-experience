@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Button.module.css";
 import { ButtonProps } from "../types/interfaces";
 
-export const Button = ({ title, isDisabled }: ButtonProps) => {
+export const Button = ({ title, isDisabled, icon }: ButtonProps) => {
   return (
     <button
       className={
@@ -11,6 +11,7 @@ export const Button = ({ title, isDisabled }: ButtonProps) => {
       disabled={isDisabled}
     >
       {title}
+      {icon}
     </button>
   );
 };
