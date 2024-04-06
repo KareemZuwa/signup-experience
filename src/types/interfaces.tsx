@@ -1,5 +1,6 @@
 export interface ButtonProps {
   isDisabled?: boolean;
+  title: string;
 }
 
 export interface InputFieldProps {

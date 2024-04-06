@@ -34,7 +34,7 @@ export const CreateAccountSection = () => {
     "confirm-password": "",
   });
 
-  const [isLoading, setLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -45,45 +45,46 @@ export const CreateAccountSection = () => {
       [name]: value,
     }));
 
-  switch (name) {
-    case "firstname":
-      validateFirstname(value);
-      break;
-    case "lastname":
-      validateLastname(value);
-      break;
-    case "email":
-      validateEmail(value);
-      break;
-    case "password":
-      validatePassword(value);
-      break;
-    case "confirm-password":
-      validateConfirmPassword(value, values.password);
-      break;
-    default:
-      break;
-  }
-};
+    switch (name) {
+      case "firstname":
+        validateFirstname(value);
+        break;
+      case "lastname":
+        validateLastname(value);
+        break;
+      case "email":
+        validateEmail(value);
+        break;
+      case "password":
+        validatePassword(value);
+        break;
+      case "confirm-password":
+        validateConfirmPassword(value, values.password);
+        break;
+      default:
+        break;
+    }
+  };
 
-const isFormValid = () => {
-  return Object.values(values).every((value) => value) &&
-         Object.values({
-           firstnameError,
-           lastnameError,
-           emailError,
-           passwordError,
-           confirmPasswordError,
-         }).every((error) => error === "") &&
-         agreementChecked;
-};
-
+  const isFormValid = () => {
+    return (
+      Object.values(values).every((value) => value) &&
+      Object.values({
+        firstnameError,
+        lastnameError,
+        emailError,
+        passwordError,
+        confirmPasswordError,
+      }).every((error) => error === "") &&
+      agreementChecked
+    );
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isFormValid()) {
       // Show loading view
-      setLoading(true);
+      setIsPending(true);
 
       setTimeout(() => {
         // Simulate form submission delay
@@ -91,7 +92,7 @@ const isFormValid = () => {
         console.log(localStorage);
 
         // Hide loading view after form submission is complete
-        setLoading(false);
+        setIsPending(false);
 
         // Clear form after a delay (if needed)
         setTimeout(() => {
@@ -111,59 +112,58 @@ const isFormValid = () => {
   return (
     <div className={styles.create_account_section_wrapper}>
       <h2 className={styles.title}>Create your Account</h2>
-      {isLoading ? (
-        <div>Loading to Server</div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className={styles.input_group}>
-            <InputField
-              label="Firstname"
-              name="firstname"
-              type="text"
-              value={values.firstname}
-              handleOnChange={handleInputChange}
-              errorMessage={firstnameError}
-            />
-          </div>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.input_group}>
           <InputField
-            label="Lastname"
-            name="lastname"
+            label="Firstname"
+            name="firstname"
             type="text"
-            value={values.lastname}
+            value={values.firstname}
             handleOnChange={handleInputChange}
-            errorMessage={lastnameError}
+            errorMessage={firstnameError}
           />
-          <InputField
-            label="Email"
-            name="email"
-            type="email"
-            value={values.email}
-            handleOnChange={handleInputChange}
-            errorMessage={emailError}
-          />
-          <InputField
-            label="Password"
-            name="password"
-            type={inputType}
-            handleOnChange={handleInputChange}
-            errorMessage={passwordError}
-            icon={icon}
-          />
-          <InputField
-            label="Confirm Password"
-            name="confirm-password"
-            type={inputType}
-            handleOnChange={handleInputChange}
-            errorMessage={confirmPasswordError}
-            icon={icon}
-          />
-          <Checkbox
-            checked={agreementChecked}
-            handleChange={handleAgreementCheckChange}
-          />
-          <Button isDisabled={!isFormValid()} />
-        </form>
-      )}
+        </div>
+        <InputField
+          label="Lastname"
+          name="lastname"
+          type="text"
+          value={values.lastname}
+          handleOnChange={handleInputChange}
+          errorMessage={lastnameError}
+        />
+        <InputField
+          label="Email"
+          name="email"
+          type="email"
+          value={values.email}
+          handleOnChange={handleInputChange}
+          errorMessage={emailError}
+        />
+        <InputField
+          label="Password"
+          name="password"
+          type={inputType}
+          handleOnChange={handleInputChange}
+          errorMessage={passwordError}
+          icon={icon}
+        />
+        <InputField
+          label="Confirm Password"
+          name="confirm-password"
+          type={inputType}
+          handleOnChange={handleInputChange}
+          errorMessage={confirmPasswordError}
+          icon={icon}
+        />
+        <Checkbox
+          checked={agreementChecked}
+          handleChange={handleAgreementCheckChange}
+        />
+        <Button
+          title={isPending ? "Creating account..." : "Create Account"}
+          isDisabled={isPending || !isFormValid()}
+        />
+      </form>
     </div>
   );
 };
