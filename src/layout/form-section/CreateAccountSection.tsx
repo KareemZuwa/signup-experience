@@ -4,12 +4,17 @@ import { Button } from "../../components/Button";
 import { InputField } from "../../components/InputField";
 import { Checkbox } from "../../components/Checkbox";
 import { useCheckbox } from "../../hooks/useCheckbox";
-import { PasswordToggleReturnType } from "../../types/interfaces";
+import {
+  PasswordToggleReturnType,
+  CreateAccountSectionProps,
+} from "../../types/interfaces";
 import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 import { useFormValidation } from "../../hooks/useFormValidation";
-import { LoaderDots } from "../../components/LoaderDots";
 
-export const CreateAccountSection = () => {
+export const CreateAccountSection = ({
+  setIsPending,
+  setOnSuccess,
+}: CreateAccountSectionProps) => {
   const {
     checked: agreementChecked,
     handleChange: handleAgreementCheckChange,
@@ -34,8 +39,6 @@ export const CreateAccountSection = () => {
     password: "",
     "confirm-password": "",
   });
-
-  const [isPending, setIsPending] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -84,18 +87,15 @@ export const CreateAccountSection = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isFormValid()) {
-      // Show loading view
       setIsPending(true);
 
       setTimeout(() => {
-        // Simulate form submission delay
         localStorage.setItem("formData", JSON.stringify(values));
         console.log(localStorage);
 
-        // Hide loading view after form submission is complete
         setIsPending(false);
+        setOnSuccess(true);
 
-        // Clear form after a delay (if needed)
         setTimeout(() => {
           setValues({
             firstname: "",
@@ -105,14 +105,15 @@ export const CreateAccountSection = () => {
             "confirm-password": "",
           });
           handleAgreementCheckChange();
-        }, 1000); // Adjust the delay time as needed
-      }, 4000); // Adjust the delay time as needed
+        }, 1000);
+      }, 4000);
     }
   };
 
   return (
     <div className={styles.create_account_section_wrapper}>
       <h2 className={styles.title}>Create your Account</h2>
+
       <form onSubmit={handleSubmit}>
         <div className={styles.input_group}>
           <InputField
@@ -160,11 +161,7 @@ export const CreateAccountSection = () => {
           checked={agreementChecked}
           handleChange={handleAgreementCheckChange}
         />
-        <Button
-          title={isPending ? "Creating account" : "Create Account"}
-          isDisabled={isPending || !isFormValid()}
-          icon={isPending ? <LoaderDots /> : undefined}
-        />
+        <Button title="Create Account" isDisabled={!isFormValid()} />
       </form>
     </div>
   );

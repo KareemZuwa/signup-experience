@@ -2,16 +2,16 @@ import React from "react";
 import styles from "./Button.module.css";
 import { ButtonProps } from "../types/interfaces";
 
-export const Button = ({ title, isDisabled, icon }: ButtonProps) => {
+export const Button = ({ title, isDisabled }: ButtonProps) => {
   return (
     <button
+    type="submit"
       className={
         isDisabled ? styles.sumbit_button_disabled : styles.sumbit_button
       }
       disabled={isDisabled}
     >
       {title}
-      {icon}
     </button>
   );
 };

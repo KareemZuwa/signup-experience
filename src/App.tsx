@@ -10,12 +10,14 @@ function App() {
       <header>
         <Header />
       </header>
-      <main>
-        <FormSection />
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+      <div className="wrapper">
+        <main>
+          <FormSection />
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }

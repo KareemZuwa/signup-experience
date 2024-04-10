@@ -1,3 +1,8 @@
+.main_wrapper {
+  display: flex;
+  flex-direction: column; /* Ensures the main wrapper takes up the full viewport height */
+}
+
 .form_section_wrapper {
   margin: 0 auto;
   display: flex;

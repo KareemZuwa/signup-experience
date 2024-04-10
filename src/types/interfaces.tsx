@@ -1,7 +1,11 @@
 export interface ButtonProps {
   isDisabled?: boolean;
   title: string;
-  icon?: JSX.Element;
+}
+
+export interface CreateAccountSectionProps {
+  setIsPending: (isPending: boolean) => void;
+  setOnSuccess: (isPending: boolean) => void;
 }
 
 export interface InputFieldProps {
