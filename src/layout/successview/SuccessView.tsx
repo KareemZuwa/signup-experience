@@ -6,7 +6,7 @@ export const SuccessView = () => {
   return (
     <div className={styles.success_view_wrapper}>
       <CheckIcon className={styles.check_icon} />
-      <h3>Thank you for registering an account</h3>
+      <h3>Thank you for registering</h3>
     </div>
   );
 };

@@ -19,6 +19,7 @@ export const InputField = ({
       </label>
       <div className={styles.input_area}>
         <input
+          required
           type={type}
           name={name}
           id={name}
