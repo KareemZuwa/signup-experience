@@ -145,15 +145,16 @@ export const CreateAccountSection = ({
           label="Password"
           name="password"
           type={inputType}
+          value={values.password}
           handleOnChange={handleInputChange}
           errorMessage={passwordError}
           icon={icon}
-          placeholder="At least 6 chars with 1 capital, 1 lower, 1 digit, 1 special chars"
         />
         <InputField
           label="Confirm Password"
           name="confirm-password"
           type={inputType}
+          value={values["confirm-password"]}
           handleOnChange={handleInputChange}
           errorMessage={confirmPasswordError}
           icon={icon}
